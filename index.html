@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Autogestión por MarCar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Brand Colors for MarCar */
+            --brand-primary: #1A3636; /* Deep forest/ocean */
+            --brand-secondary: #D67D3E; /* Earthy orange/terracotta */
+            --brand-accent: #405D72; /* Slate blue */
+            --brand-light: #F7F7F7; /* Off white */
+            --brand-dark: #0f1f1f;
+            
+            --text-main: #2C3E50;
+            --text-light: #7F8C8D;
+            --bg-color: #F0F3F4;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Hero Header with Brand Image */
+        header {
+            position: relative;
+            background-color: var(--brand-dark);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+            overflow: hidden;
+            border-bottom: 6px solid var(--brand-secondary);
+        }
+
+        .header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.35;
+            z-index: 0;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-size: 1.25rem;
+            font-weight: 300;
+            opacity: 0.95;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .brand-intro {
+            max-width: 1000px;
+            margin: -3rem auto 3rem auto;
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .brand-intro img {
+            border-radius: 8px;
+            width: 40%;
+            object-fit: cover;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .brand-intro-text h2 {
+            color: var(--brand-primary);
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem 2rem;
+        }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+            border-left: 6px solid var(--brand-accent);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            border-left-color: var(--brand-secondary);
+        }
+
+        .section h2 {
+            color: var(--brand-primary);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section h2 span {
+            background-color: var(--brand-primary);
+            color: white;
+            width: 45px;
+            height: 45px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .text-content ul {
+            list-style-type: none;
+        }
+
+        .text-content li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+            color: var(--text-main);
+        }
+
+        .text-content li::before {
+            content: '➜';
+            position: absolute;
+            left: 0;
+            color: var(--brand-secondary);
+            font-weight: bold;
+        }
+
+        .text-content h3 {
+            color: var(--brand-accent);
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+            border-bottom: 2px solid var(--brand-light);
+            padding-bottom: 5px;
+        }
+
+        .image-content {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: 1px solid #eee;
+        }
+
+        .image-content img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .image-content:hover img {
+            transform: scale(1.03);
+        }
+
+        .brand-image-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .brand-image-grid img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .tips-card {
+            background-color: var(--brand-primary);
+            color: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-top: 3rem;
+            box-shadow: 0 10px 25px rgba(26, 54, 54, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tips-card::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background-color: rgba(255,255,255,0.05);
+            border-radius: 50%;
+        }
+
+        .tips-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--brand-secondary);
+        }
+
+        .tips-card ul li {
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 1rem;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .tips-card ul li::before {
+            content: '★';
+            position: absolute;
+            left: 0;
+            color: var(--brand-secondary);
+        }
+
+        .support-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-top: 2rem;
+            border-left: 6px solid var(--brand-secondary);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        
+        .support-card h3 {
+            color: var(--brand-primary);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .content-grid, .brand-intro {
+                grid-template-columns: 1fr;
+                flex-direction: column;
+            }
+            .brand-intro img {
+                width: 100%;
+            }
+            .image-content {
+                order: -1;
+                margin-bottom: 1rem;
+            }
+            header h1 {
+                font-size: 2.5rem;
+            }
+            header {
+                padding: 4rem 1.5rem 6rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="MarCar_14x7_09_2022ok@4x-100.jpg" alt="Fondo MarCar" class="header-bg">
+        <div class="header-content">
+            <h1>Guía de Autogestión</h1>
+            <p>Un manual paso a paso creado por MarCar para que mantengas tu web de Turismo Aventura siempre actualizada.</p>
+        </div>
+    </header>
+
+    <div class="brand-intro">
+        <img src="MarCar_photo_5084784663767132296_y.jpg" alt="Agencia MarCar">
+        <div class="brand-intro-text">
+            <h2>Impulsa tu negocio con MarCar</h2>
+            <p>Desde <strong>MarCar</strong> hemos diseñado tu sitio para que sea muy fácil de administrar. Mantener tu web actualizada es clave para transmitir la emoción y la calidad de tus aventuras. En esta guía te mostramos cómo usar el panel para reflejar siempre lo mejor de tus servicios.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        
+        <!-- Step 1 -->
+        <div class="section">
+            <h2><span>1</span> Cómo acceder al editor</h2>
+            <div class="content-grid">
+                <div class="text-content">
+                    <p>Para editar tu página, sigue estos pasos:</p>
+                    <ul>
+                        <li>Inicia sesión en tu cuenta de Google (Gmail).</li>
+                        <li>Ingresa a <strong>sites.google.com</strong> o búscalo en el ícono de "Google Apps" (los 9 puntos) junto a tu perfil.</li>
+                        <li>Haz clic en el nombre de tu sitio para abrir el editor.</li>
+                    </ul>
+                </div>
+                <div class="image-content">
+                    <img src="Captura de pantalla 2026-05-16 a la(s) 1.59.37 p. m..png" alt="Acceder al editor">
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="section">
+            <h2><span>2</span> Conociendo el Panel de Control</h2>
+            <div class="content-grid">
+                <div class="image-content">
+                    <img src="Captura de pantalla 2026-05-16 a la(s) 2.00.00 p. m..png" alt="Panel de Control">
+                </div>
+                <div class="text-content">
+                    <p>A la derecha verás tres pestañas principales que son tu "caja de herramientas":</p>
+                    <ul>
+                        <li><strong>Insertar:</strong> Para añadir cuadros de texto, imágenes de las expediciones, botones o archivos.</li>
+                        <li><strong>Páginas:</strong> Para añadir nuevos tours, borrar páginas viejas o cambiar el menú.</li>
+                        <li><strong>Temas:</strong> Para ajustar los colores corporativos y la tipografía.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="section">
+            <h2><span>3</span> Tareas comunes para tu negocio</h2>
+            <div class="content-grid">
+                <div class="text-content">
+                    <h3>Actualizar textos</h3>
+                    <ul>
+                        <li>Haz clic sobre cualquier texto que ya exista.</li>
+                        <li>Escribe los cambios directamente (precios, itinerarios).</li>
+                        <li>Usa la barra superior para formatos como listas o negritas.</li>
+                    </ul>
+
+                    <h3>Cambiar o añadir fotos de aventuras</h3>
+                    <ul>
+                        <li><strong>Reemplazar:</strong> Haz clic en la imagen → tres puntos (⁝) → "Reemplazar imagen".</li>
+                        <li><strong>Añadir:</strong> Insertar → Imágenes → Subir.</li>
+                        <li><em>Tip: Arrastra las esquinas azules para ajustar el tamaño sin deformarla.</em></li>
+                    </ul>
+
+                    <h3>Subir folletos o PDFs</h3>
+                    <ul>
+                        <li>Sube el archivo a Google Drive y configúralo como "Cualquier persona con el enlace".</li>
+                        <li>En Sites: Insertar → Drive.</li>
+                    </ul>
+                </div>
+                <div class="image-content">
+                    <img src="Captura de pantalla 2026-05-16 a la(s) 2.00.26 p. m..png" alt="Tareas comunes">
+                    <div style="margin-top: 15px;">
+                        <img src="MarCar_photo_5882871337771445740_x (1).jpg" alt="Aventura" style="border-radius: 8px; width: 100%;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="section">
+            <h2><span>4</span> Gestión de Páginas (Nuevos Tours)</h2>
+            <div class="content-grid">
+                <div class="image-content">
+                    <img src="Captura de pantalla 2026-05-16 a la(s) 2.00.49 p. m..png" alt="Gestión de Páginas">
+                </div>
+                <div class="text-content">
+                    <p>Si lanzas una nueva expedición:</p>
+                    <ul>
+                        <li>Ve a la pestaña <strong>Páginas</strong>.</li>
+                        <li>Haz clic en el botón <strong>+</strong> (Página nueva).</li>
+                        <li>Escribe el nombre del tour y dale a "Hecho".</li>
+                        <li>Para hacerla sub-página (ej: "Tours" > "Rápel"), arrástrala debajo de la principal.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="section">
+            <h2><span>5</span> ¡No olvides publicar!</h2>
+            <div class="content-grid">
+                <div class="text-content">
+                    <p>Google Sites guarda tus cambios como un borrador. Para que tus clientes vean las novedades en vivo, <strong>debes hacer clic en el botón azul "Publicar"</strong> en la esquina superior derecha.</p>
+                </div>
+                <div class="image-content">
+                    <img src="Captura de pantalla 2026-05-16 a la(s) 2.01.41 p. m..png" alt="Publicar">
+                </div>
+            </div>
+        </div>
+
+        <!-- Tips Section -->
+        <div class="tips-card">
+            <h3>Consejos para destacar tu negocio:</h3>
+            <ul style="list-style-type: none; padding-left: 0;">
+                <li><strong>Fotografías Reales:</strong> Trata de usar siempre las imágenes de tus propias excursiones para transmitir confianza y autenticidad.</li>
+                <li><strong>Accesibilidad:</strong> Usa siempre texto alineado a la izquierda y asegúrate de que el contraste permita una fácil lectura en celulares.</li>
+                <li><strong>Historial:</strong> Si te equivocas, ve al menú (⁝) junto a "Publicar" y usa el Historial de versiones para deshacer errores.</li>
+            </ul>
+        </div>
+
+        <!-- Support / Final Note Section from Creator -->
+        <div class="support-card">
+            <h3>¿Necesitas más ayuda?</h3>
+            <p>Si tienes alguna consulta más compleja, quieres agregar nuevas funciones a tu sitio o necesitas un rediseño, <strong>el equipo de MarCar está siempre a tu disposición</strong> para ayudarte a seguir creciendo en el mundo digital.</p>
+        </div>
+
+    </div>
+</body>
+</html>
